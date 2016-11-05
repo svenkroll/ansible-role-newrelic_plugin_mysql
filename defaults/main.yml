@@ -1,0 +1,9 @@
+---
+newrelic:
+  plugin:
+    plugin_dir: "/etc/newrelic/plugins/"
+    mysql:
+      download_url: "https://raw.githubusercontent.com/newrelic-platform/newrelic_mysql_java_plugin/master/dist/"
+      archive_name: "newrelic_mysql_plugin-2.0.0.tar.gz"
+      dir_name: "newrelic_mysql_plugin-2.0.0"
+      active_symlink_dir_name: "newrelic_mysql_plugin"

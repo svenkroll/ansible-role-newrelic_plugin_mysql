@@ -1,0 +1,22 @@
+---
+- name: create plugin folder
+  file: path="{{ newrelic.plugin.plugin_dir }}mysql"
+        state=directory
+        owner="newrelic"
+        group="newrelic"
+        recurse=yes
+
+- name: download mysql plugin archive
+  get_url: url="{{ newrelic.plugin.mysql.download_url }}{{ newrelic.plugin.mysql.archive_name }}"
+           dest=/tmp/{{ newrelic.plugin.mysql.archive_name }}
+           force=no
+
+- name: unpack mysql plugin archive
+  command: "tar -zxvf /tmp/{{ newrelic.plugin.mysql.archive_name }} -C {{ newrelic.plugin.plugin_dir }}mysql/"
+
+- name: remove new relic mysql archive
+  file: path=/tmp/{{ newrelic.plugin.mysql.archive_name }}
+        state=absent
+
+- name: activate new version
+  command: "ln -sfn {{ newrelic.plugin.plugin_dir }}mysql/{{ newrelic.plugin.mysql.dir_name }}/ {{ newrelic.plugin.plugin_dir }}mysql/{{ newrelic.plugin.mysql.active_symlink_dir_name }}"

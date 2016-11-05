@@ -1,0 +1,19 @@
+---
+
+- name: Systemd template
+  template: src=newrelic_mysql.service.j2
+            dest=/etc/systemd/system/newrelic_mysql.service
+            owner=root
+            group=root
+            mode=0644
+  register: nrmysqlresult
+
+- name: Reload systemd
+  command: "systemctl daemon-reload"
+  when: nrmysqlresult.changed
+
+- name: Configure service
+  service:
+    name: "newrelic_mysql"
+    state: "started"
+    enabled: "yes"

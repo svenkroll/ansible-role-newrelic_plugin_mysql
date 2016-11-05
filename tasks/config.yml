@@ -1,0 +1,16 @@
+---
+
+- name: newrelic.json template
+  template: src=newrelic.json.j2
+            dest={{ newrelic.plugin.plugin_dir }}mysql/{{ newrelic.plugin.mysql.active_symlink_dir_name }}/config/newrelic.json
+            owner=newrelic
+            group=newrelic
+            mode=0664
+
+- name: plugin.json template
+  template: src=plugin.json.j2
+            dest={{ newrelic.plugin.plugin_dir }}mysql/{{ newrelic.plugin.mysql.active_symlink_dir_name }}/config/plugin.json
+            owner=newrelic
+            group=newrelic
+            mode=0664
+

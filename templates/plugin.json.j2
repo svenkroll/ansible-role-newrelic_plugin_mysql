@@ -1,0 +1,11 @@
+{
+  "agents": [
+    {
+      "name"    : "{{ ansible_hostname }}",
+      "host"    : "localhost",
+      "metrics" : "{{mysql_replication_role}},status,buffer_pool_stats,innodb_status,innodb_metrics",
+      "user"    : "{{ newrelic_plugin_mysql_db_user }}",
+      "passwd"  : "{{ newrelic_plugin_mysql_db_password }}"
+    }
+  ]
+}
